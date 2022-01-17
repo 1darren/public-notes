@@ -1,7 +1,7 @@
 Contents:
 1. Order of Operations
   - CTE (WITH ... AS)  
-  - Windowing (Running total)
+  - Windowing (AGGREGATE ... OVER)
 2. MS SQL vs DB2 SQL 
 
 
@@ -57,22 +57,23 @@ ON
 ```
 
 ### Windowing 
-- to create a running total 
-- in snippet below;
-  - the `running_total` column creates an average
+- Window Functions create a column with fresh values calculated values, based on the rows
 
 ```
 SELECT 
-        start_time,
-        start_terminal,
-        duration,                       --running_total, duration, duration_seconds, start_terminal
-        duration_seconds,
-       SUM(start_terminal) OVER (ORDER BY duration_seconds, start_terminal) AS running_total
-  FROM tutorial.dc_bikeshare_q1_2012
-  ORDER BY
-        duration_seconds ASC, start_terminal ASC
+  col_1,
+  col_2, 
+  col_3,
+  AGGREGATE(col_1) OVER (ORDER BY col_2, col_3) AS running_total
+FROM 
+  table
   
 ```
+
+e.g. `SUM(duration_seconds) OVER (ORDER BY start_time) AS running_total`
+- creates a `running_total` of `SUM of duration_seconds`
+- `START_TIME` is ordered (`ASC` by default) 
+
 ----
 
 ## MS SQL vs DB2 SQL
