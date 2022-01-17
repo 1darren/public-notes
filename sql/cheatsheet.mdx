@@ -71,8 +71,11 @@ FROM
 ```
 
 e.g. `SUM(duration_seconds) OVER (ORDER BY start_time) AS running_total`
+- `OVER` creates the windowing function
 - creates a `running_total` of `SUM of duration_seconds`
-- `START_TIME` is ordered (`ASC` by default) 
+- `START_TIME` is ordered (`ASC` by default)
+- each stepwise increment of `START_TIME`increases the rows selected for the computation of `SUM of duration_seconds`
+  - so if there are 3 rows for `START_TIME`, they would all be collected
 
 ----
 
