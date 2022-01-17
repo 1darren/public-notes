@@ -1,6 +1,6 @@
 Contents:
 1. Order of Operations
-2. MySQL vs DB2 SQL 
+2. MS SQL vs DB2 SQL 
 
 
 ----
@@ -12,7 +12,7 @@ SELECT
   column_name ,
   AGGREGATE(column_name)
 FROM
-  table_name
+  Table_Name
 WHERE
   boolean_conditional
 GROUP BY
@@ -23,4 +23,37 @@ ORDER BY
   sorting_column ASC, secondary_sorting DESC
 LIMIT
   top_rows_to_select
+  
+  
 ```
+### CTE Common Table Expressions
+- to create a subtable with an alias you can SELECT from
+
+```
+WITH CTE_Table_1 AS 
+  (
+  SELECT 
+    cte_column
+   FROM
+    cte_table
+   WHERE
+    cte_conditional
+  ) ,
+WITH CTE_Table_2 AS 
+  (
+  ...
+  )
+
+SELECT
+  column
+FROM 
+  CTE_Table_1
+JOIN 
+  CTE_Table_2
+ON
+  CTE_Table_1.column = CTE_Table_2.column
+```
+
+----
+
+## MS SQL vs DB2 SQL
