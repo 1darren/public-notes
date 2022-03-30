@@ -54,3 +54,57 @@
    - Pop, Lookup by Index is O(n) for LL and O(1) for L
 - ...but faster at the head of the LL
    - Prepend, Pop First is O(1) instead of O(n) for L (need to re-index everything
+
+---------
+### Understanding a Node
+- A node in a Linked List is 2 parts; `value` & `next`
+- Almost like a dictionary;
+   ![image](https://user-images.githubusercontent.com/24678048/160831361-527fb3d8-a2cd-4f9b-80ac-cf9e86792379.png)   
+
+- But also, a Linked List can be thought of as nested brackets; with `head` pointing to the first brackets and `tail` pointing to the innermost bracket
+
+![image](https://user-images.githubusercontent.com/24678048/160831470-5a1c96eb-5ccf-4b35-a64e-96ff9dfc918d.png)
+
+### Constructing a Linked List
+- We start with creating a `Node` class; 
+- Nodes are the building blocks of Linked Lists
+``` 
+class Node:                            # initializing the node class
+   def __init__(self, value):          # creates Node-unique methods of value & next
+      self.value = value
+      self.next = none
+
+
+class LinkedList:                      # initializing the LL class, defining its attributes
+   def __init__(self, value): 
+      new_node = Node(value)
+      self.head = new_node
+      self.tail = new_node
+      self.length = 1
+      
+```
+- Now, we can create a new linked list
+   - This creates the LinkedList with a value of 4
+   - We can then `print(my_linked_list.head.value)` which should output 4
+![image](https://user-images.githubusercontent.com/24678048/160833259-64113752-81f1-4972-9d9a-aa081ce682e6.png)
+
+### Creating LL Methods
+- Append is relatively easy if the LL is not empty;
+- But there is an edge case: if LL is empty, 
+    - both `head` and `tail` point to None
+    - this is more complicated...
+
+![image](https://user-images.githubusercontent.com/24678048/160833829-2d21c2cb-c03e-4bfe-b8ea-80a4c8e586b1.png)
+
+
+```
+class LinkedList:                   
+    def append(self, value):           # defining methods that work with new class
+      if self.length = 0, 
+         self.head = 
+    
+    
+    
+    def prepend(self, value):          # defining methods that work with new class
+    def insert(self, index, value):    # defining methods that work with new class
+```
