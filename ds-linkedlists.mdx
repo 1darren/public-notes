@@ -1,0 +1,56 @@
+# Data Structure
+
+## Linked List
+
+### Key differences with lists;
+1. There are no indexes; each node points to the next node
+   - Because nodes are not adjacent, we cannot have addresses
+   - Because there are no addresses, we cannot find the node by using the index
+2. 2 additional pointers; starts with a `head`, ends with a `tail`
+   - The `tail` points to `None`
+
+#### Append & Pop / Removing or Adding to the Final Node: O(n)
+   -  `Tail` must point to the new last node
+   -  New last node must point to zero 
+-  But, because there are no indexes...
+   -  We can't
+   -  We can't just jump to the final node; 
+   -  First we set the new last node to point to zero
+   -  Then, we iterate through the entire list to point at the last node
+   -  This activity is O(n)
+
+
+#### Prepend: Adding Item at the Top: O(1) 
+- This operation has constant time;
+   - First, point New Head at previous Head
+   - Then, point `head` at New Head
+   - Does not iterate through list, is constant
+
+#### Pop First: Removing Item at the Top: O(1) 
+- Similarly, this function runs in constant time;
+   - Point `head` at New Head
+   - Remove item from Linked List
+
+
+#### Adding/Removing Item in the Middle: O(N) 
+- There's no way to find a specific node; so must iterate through the list
+- To add is O(n)
+   - e.g. to replace a "3", must iterate through the list to find the "3" node
+   - newnode.next = 3.next, then
+   - 3.next = newnode
+ - Similarly, to remove is O(n)
+   - previousnode.next = removednode.next
+   - remove removednode
+
+#### Lookup by Index or Search: O(N) 
+- There's no way to find a specific node; so must iterate through the list
+
+
+### Linked Lists vs Lists
+- Some features are the same for Linked Lists & Lists 
+   - Append O(1)
+   - Insert, Remove, Lookup by Value O(n)
+- Linked Lists take longer if traverse...
+   - Pop, Lookup by Index is O(n) for LL and O(1) for L
+- ...but faster at the head of the LL
+   - Prepend, Pop First is O(1) instead of O(n) for L (need to re-index everything
