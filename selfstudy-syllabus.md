@@ -3,7 +3,16 @@
 - Big O Cheatsheet: https://www.bigocheatsheet.com/
 
 
+
+
 ## Next:
+
+- **Stuff I Vaguely Know About And Want to Learn**
+  - XG Boost
+  - Isolation Forest to detect Outliers
+  - K-Means Clustering
+  - Rule-Based System
+
 
 - **Data Structures II: Niche **
   - Queue 
