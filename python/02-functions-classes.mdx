@@ -1,1 +1,280 @@
 # Python 02 Functions & Classes
+
+
+## 2.0 Topics
+1. Functions
+2. Lambda functions
+3. Modules
+4. Classes
+
+## 2.0.0 Operators: Recap & Extensikon
+- Operators are _____
+  - Logical operators
+  - Arithmetic operators
+  - Assignment operators
+  - Comparison operators
+
+
+### Membership Operators 
+- Validates if (object) is member of (subject)
+- 2 membership operators: `in` and `not in`
+
+
+```
+str1 = 'abc'
+'a' in str1       # True
+'g' not in str1   # True
+```
+
+### Identity Operators 
+- Validates if (object) is of the same class as (type_of_class)
+- 2 identity operators: `is` and `is not`
+
+
+```
+x = 5               # int
+type(x) is int      # True
+type(x) is not str  # True
+```
+
+
+## 2.1 Functions
+- Blocks of reusable code to perform certain actions
+  - reduces repetitive code, which saves time in long run (from compiling)
+  - to structure program so logic of code is cleaner
+
+### 2.1.1 Defining & Calling Functions
+- Syntax to define function:
+  - opens with `def`
+  - functionname must start with letter, underscore
+  - often ends with return; can end without too (eg print)
+
+```
+def function_name(input_1, input_2 ...):
+   code block           # note ident
+   return output        # ends here
+```
+
+- To call a function, simply write its name and input parameters
+- e.g. `function_name(a, b)`
+
+### 2.1.2 Argument types
+- 4 categories; how function is called (1, 2) and how functions is defined (3, 4)
+  1. Positional arguments:
+    - 2 main requirements for PosArg
+      - (1) arguments must be passed in the correct positional order
+      - (2) # of input arguments must exactly match function-definition arguments
+      - Otherwise, function will throw an error OR not run as expected
+    - no need to define keywords if you pass them in precisely the expected order
+    - e.g.
+      ```
+      def info(name, age):
+        print(name, 'is', age, 'years old')
+        
+      info('Mike', 40)
+      >> "Mike is 40 years old"
+      info(40, 'Mike')
+      >> "40 is Mike years old"
+      ```
+  2. Keyword arguments
+    - See above; arguments do need not be in the correct order to be passed in
+    ```
+    info(age = 40, name = 'Mike')
+      >> "Mike is 40 years old"          # position doesn't matter because keyword is defined
+    ```
+  3. Default arguments
+    - Default value of input-arguments if not otherwise defined; must be defined during function definition
+    - Default value will be overwritten if new value passed in
+    ```
+    def info(name, age=99):
+        print(name, 'is', age, 'years old')
+    info('Mike')
+      >> "Mike is 99 years old"          # default value used
+    info('Mike', 40)
+      >> "Mike is 40 years old"          # default value overwritten
+    ```
+  4. Variable-length assignments
+    - use of `*args` and `*kwargs`
+      - `*args` allows us to create a list of future further arguments
+       ```
+      def info(name, *args):
+          hobby = []
+          for a in args:
+            hobby.append(a)
+          print(name, "hobbies: " + ','.join(hobby)
+      info('Mike', 'hiking', 'reading', 'bananas')
+        >> "Mike hobbies: hiking, reading, bananas"
+      ```
+      - `*kwargs` creates a dictionary that maybes keywords to arguments
+       ```
+      def info(name, **kwargs):
+          hobby = []
+          for k, v in kwargs.items():
+            hobby.append(k + '-' + v)
+          print(name, "hobbies: " + ','.join(hobby)
+          
+      info('Mike', first='hiking', loves='reading', hates='bananas')
+        >> "Mike hobbies: likes-hiking, loves-reading, hates-bananas"
+      ```
+![image](https://user-images.githubusercontent.com/24678048/189471197-870efcf1-de61-4e25-a4ff-3a0cd496816f.png)
+![image](https://user-images.githubusercontent.com/24678048/189471200-05061708-1f5b-4e64-bb99-e6785e1af707.png)
+
+
+### 2.1.3 Return Types
+- `return` terminates the execution of the function, and returns the output to the caller
+  - `return` can return `None`, values, or other functions
+    - `None`    :  if function has no return value, None is returned by default
+    - Values    : returns numbers, collections, sequences of objects
+      - Useful to for mathematical operations, eg create logistic functions
+    - Functions : 
+    ```
+    def by_factor(factor):
+       def multiply(number):
+          return factor * number
+       return multiply
+    double = by_factor(2)       # double becomes equivalent to by_factor of factor 2; when number is received, returns factor * number
+    double(2) 
+    >> 4
+    double(3)
+    >> 6
+    ```
+    
+### 2.1.4 Variable scopes
+- Variables are only available within their "scopes";
+  - `local` variables are declared within the body of the function and are only available within the function
+![image](https://user-images.githubusercontent.com/24678048/189471809-3e97c8a8-1eae-4d21-889e-5694000f6637.png)
+  - `global` variables are declared outside and can be used anywhere
+
+
+## 2.2 Lambda expressions
+
+### 2.2.1 Lambda expression definitions:
+- Similar to a function, takes in an input of argument_list and outputs based on expression
+- lambda expressions don't have a name, and must be defined within a single line
+- usually for simple tasks 
+```
+lambda argument_list: expression
+lambda x, y: x*y                # multiplication output
+lambda *args: sum(args)         # sum-all output
+```
+
+![image](https://user-images.githubusercontent.com/24678048/189471889-6497a1bf-062d-4b98-aaaa-a74cedb74ab9.png)
+
+
+## 2.3 Modules
+
+### 2.3.1 Module definition:
+- A `module` contains functions & global variables
+- `import module` imports the module
+  - e.g. `import math` gives `pi` (global variable) and `sqrt`
+
+
+
+
+## 2.4 Classes
+
+### 2.3.1 Objects
+- Everything in Py is an `object`; every object is an instance of a `type` or `class`
+![image](https://user-images.githubusercontent.com/24678048/189471964-ba466011-c580-4312-b4a6-f2bf5fe5a354.png)
+
+- when defining something, e.g. `a = 2`, we create an object with a unique object `id`
+
+- `a is b`: checks if object `a` has the same `id` as object `b`, e.g. same identity
+- `a == b`: checks if object `a` has the same *`value`* as object `b`,
+
+```
+a = [1, 2]
+b = [1, 2]
+a is b         # False, would need to be b = a for definition
+a == b         # True, contains same values
+```
+
+- Python caches integers in (-5, 256) inclusive; so assignments of small variables go to these places
+  - If `a = 101` and `b = 101`, both will be tagged to the same cached object
+  - But not if `a = 1001` and `b = 1001`, as both > 256
+
+### 2.3.1b Copies
+- if `a = 2` and `b = a`, actually, both a & b are pointers to the `2` objewct
+  - modifying `b` **will also modify `a`** !!! 
+-  alternatively, `b = copy.copy(a)` will create a separate object
+  -  modifying `a` will not modify `a`
+  -  however, it will only copy modify the parent layer, not the child layer; 
+-  final option: `b = copy.deepcopy(a)` will create separate clones for each child object
+
+
+
+### 2.3.1c Data Mutability
+- strings, tuples, integers are not mutable
+  - modifying strings really repoints the pointer to a different object, e.g. 
+  ```
+  string = 'hello'         # some object id
+  string += 'i'
+  string
+  >> 'hello!'              # a different object id
+  ```
+- whereas lists, dictionaries, sets are mutable; modifying does not repoint object
+  ```
+  list = [1, 2]         # some object id
+  list += [3]
+  list
+  >> [1, 2, 3]          # same object id
+  ```
+  
+### 2.3.2 Classes
+- Classes are blueprints / general form of objects
+  - `objects` may be different, but are variations/follow same rules for `classes`
+- we can use `__init__` to give objects attributes when creating them
+```
+class Student:
+  def __init__(self, first, last):
+    self.first = first
+    self.last = last
+  def fullname(self):
+    return self.first + " " + self.last
+ stu_1 = Student("Jean", "Chen")
+ stu_1.fullname()
+ >> Jean Chen
+```
+- we can also define num_of_stu within Student class as a count, such that when __init__ is run, num_of_stu += 1
+
+### 2.3.3 Inheritance
+- When creating child `class`es, we can have it inherit all functionalities of parent classes
+```
+class Rep(Student):     # Rep is now a child class to Student
+  pass
+rep_1 = Rep('Dai', 'Bingtian')
+rep_1.fullname()
+>> Dai Bingtian
+```
+
+- `Super Inheritance` can be used to have information be "inherited by default" from parent class
+```
+class Rep(Student):
+  def __init__(self, first, last, cat):
+    super().__init__(first, last) 
+    self.cat = cat
+rep_1 = Rep("Jean", "Chen", "Academic")
+rep_1.fullname()
+ >> Jean Chen
+```
+
+- Super Inheritance is in contrast to `Override Inheritance`, which takes over 
+
+Super Inheritance` can be used to have information be "inherited by default" from parent class
+```
+class Rep(Student):
+  ...
+  
+  def fullname(self):
+    return self.cat + self.first + self.last
+
+rep_1 = Rep("Jean", "Chen", "Academic")
+rep_1.fullname()
+ >> AcademicJeanChen
+```
+
+### 2.3.4 Magic Methods
+- defined by starting and ending with double underscore
+- can be checked using `dir()`
+![image](https://user-images.githubusercontent.com/24678048/189473809-35484a21-b14b-4eb1-bebd-09795a9757cf.png)
+
