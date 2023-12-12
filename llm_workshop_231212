@@ -1,0 +1,52 @@
+# Databricks LLM Workshop 
+https://community.databricks.com/t5/singapore/databricks-x-dbt-x-fivetran-workshop-singapore-12-dec-2023/m-p/54155
+
+## Quotes
+- 90% of data created in last 5 years;
+- Is the data ready for your organisation to use?
+
+## 
+- `Databricks`  -- bought `MosaicML` Gen AI startup; megaconnector
+    - SQL Warehouse: connector OR partner connector (eg Fivetran)
+    - Catalog: looks like a database, with schemas and tables
+- `Fivetran`    -- managed ETL/data connector 
+- `dbt`         -- programmable data manipulation "work like engineers" with testing, version control, reusable code, "data build tool"
+    - always use "ref" statement, which `dbt` uses to chain lineage, origins, etc
+
+
+## Delta Lakehouse
+- Series of delta files sitting in GCS, Azure
+- Delta: performs like a data, stored as a file in a data lake
+- Also allows permissions layer
+- Automatically generates lineage
+
+- ACID:  4 key properties that define a transaction: Atomicity, Consistency, Isolation, and Durability
+
+
+
+## Databricks is about unification
+- Simplify architecture, seamless;
+- Hence, Lakehouse Platform: 
+    - Data Lake
+    - Can do analytics, ML, etc on Databrick
+
+
+# AI Bit
+
+- Retrieval Augmented Genreation
+    - User prompt is `augmented` with context;
+        - e.g. proprietary dataset 
+    - Pros: +up-to-date, +reduced risk of hallucination
+- RAG can get costly (augmented prompts cost more tokens) -- at huge scale, companies switch to fine tuning
+
+- Spectrum goes: Prompt Engineering <> Retrieval Augmented Generation <> Fine-Tuning <> Train AI Form Scratch
+    - Ease of implementation/cost <--> High cost but high control
+
+- 3 Parts of Rag Workflow
+    - User Query + Language Model -> Embedding
+    - Source Data + Language Model -> Embedding
+    - Vector database takes embedding of both, match similarity, + Language Model -> Output
+
+- Use of Delta Live Tables: streaming, updateable vector database
+    - Always refreshed; 
+    - Works with databricks Vector Search 
